@@ -388,7 +388,10 @@ bool APacman::IsBetween(const FVector& VectorToCheck, const FVector& VectorA, co
 }
 
 void APacman::teleportPacman(ACustom_MapBlock* teleportBlock) {
-	SetActorLocation(teleportBlock->teleportDestination->getCenterPoint());
+	int Z = GetActorLocation().Z;
+	FVector newPosition = teleportBlock->teleportDestination->getCenterPoint();
+	newPosition.Z = Z;
+	SetActorLocation(newPosition);
 	currentBlock = teleportBlock->teleportDestination;
 	nextBlock = getNextBlock();
 }

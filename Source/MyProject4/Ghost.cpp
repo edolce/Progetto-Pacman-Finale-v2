@@ -657,7 +657,10 @@ void AGhost::ForcedMovement(FVector movementVelocityVector) {
 }
 
 void AGhost::teleportGhost(ACustom_MapBlock* teleportBlock) {
-	SetActorLocation(teleportBlock->teleportDestination->getCenterPoint());
+	int Z = GetActorLocation().Z;
+	FVector newPosition = teleportBlock->teleportDestination->getCenterPoint();
+	newPosition.Z = Z;
+	SetActorLocation(newPosition);
 	currentBlock = teleportBlock->teleportDestination;
 }
 
